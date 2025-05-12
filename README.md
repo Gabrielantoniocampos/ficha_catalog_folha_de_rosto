@@ -1,49 +1,81 @@
-# Geração automática do README.txt explicativo
-conteudo_readme = """
-README - Geração Automatizada de Fichas Catalográficas e Modelos Word
-Autor: [Seu Nome ou Equipe]
-Versão: 1.0
-Data: [Data de geração]
+# 📚 Automação de Fichas Catalográficas e Modelos Word
 
-Objetivo
---------
-Este script automatiza a criação de fichas catalográficas e documentos modelo a partir de uma planilha Excel contendo dados bibliográficos. Utiliza dois arquivos .docx como templates, substitui os placeholders com dados reais e salva os documentos organizados em pastas nomeadas por autor e título.
+Este projeto automatiza a geração de fichas catalográficas e documentos modelo Word com base em dados provenientes de uma planilha Excel. Ele é útil para instituições de ensino, bibliotecas ou editoras que precisam gerar um grande volume de fichas catalográficas padronizadas.
 
-Requisitos
-----------
-Instale os pacotes necessários com:
-    pip install pandas openpyxl python-docx
+---
 
-Arquivos Utilizados
--------------------
-- BASE_DE_FICHAS_PARA_AUTOMAÇÃO.xlsx: Dados bibliográficos por linha.
-- Modelo_WBA0048_v3_Liderança_FC.docx: Template da ficha catalográfica.
-- Modelo_WBA0048_v3_Liderança.docx: Template do documento base.
-- fichas_final_com_tabelas/: Pasta onde são salvos os documentos gerados.
-- fichas_e_modelos.zip: Arquivo ZIP contendo todos os documentos criados.
+## 🎯 Objetivo
 
-Descrição Técnica do Processo
------------------------------
-1. A planilha é carregada e lida com pandas.
-2. O nome do autor é formatado como "Sobrenome, Nome".
-3. Os dados são usados para substituir placeholders como <AUTOR>, <TITULO>, <SUBTITULO> etc.
-4. Campos como subtítulo e volume são tratados para evitar formatações quebradas.
-5. Uma pasta é criada para cada linha da planilha com os arquivos:
-    - Ficha Catalográfica.docx
-    - Modelo Preenchido.docx
-6. Ao final, todos os arquivos são compactados em fichas_e_modelos.zip.
+A ferramenta tem como finalidade:
 
-Observações
------------
-- Volume tratado como inteiro, ex.: ": v. 2"
-- Subtítulo e volume são ocultados se estiverem vazios.
-- Os nomes de pastas e arquivos são higienizados para evitar erros de sistema.
+- Substituir automaticamente campos (placeholders) em arquivos `.docx` usando dados da planilha.
+- Gerar uma ficha catalográfica e um modelo de conteúdo para cada item (linha) da planilha.
+- Organizar os documentos em pastas com base no nome do autor e título.
+- Compactar todo o resultado final em um único arquivo `.zip`.
 
-Contato
--------
-[Insira aqui e-mail ou referência do autor, se necessário]
-"""
+---
+
+## 🛠️ Tecnologias e Bibliotecas Usadas
+
+- Python 3.x
+- `pandas`
+- `openpyxl`
+- `python-docx`
+- `os`, `zipfile`, `re`, `shutil`
+
+Instalação das dependências:
+
+```bash
+pip install pandas openpyxl python-docx
+
 
 # Salva o README na pasta de saída
+
+📁 fichas_final_com_tabelas/
+├── 📁 Silva, João - Liderança Transformadora/
+│   ├── Ficha Catalográfica.docx
+│   └── Modelo Preenchido.docx
+├── 📁 Souza, Maria - Gestão de Projetos/
+│   ├── Ficha Catalográfica.docx
+│   └── Modelo Preenchido.docx
+└── 📄 README.txt
+
+📦 fichas_e_modelos.zip
+
 with open(os.path.join(pasta_saida, "README.txt"), "w", encoding="utf-8") as f:
     f.write(conteudo_readme.strip())
+
+
+📁 Estrutura dos Arquivos
+BASE_DE_FICHAS_PARA_AUTOMAÇÃO.xlsx — Planilha com dados bibliográficos por linha.
+
+Modelo_WBA0048_v3_Liderança_FC.docx — Template da ficha catalográfica com placeholders.
+
+Modelo_WBA0048_v3_Liderança.docx — Template do documento modelo.
+
+fichas_final_com_tabelas/ — Pasta gerada com os documentos individuais.
+
+fichas_e_modelos.zip — Arquivo final compactado contendo todos os documentos.
+
+README.txt — Explicação técnica para documentação interna.
+
+🔄 Funcionamento
+A planilha Excel é lida linha por linha.
+
+O nome do autor é formatado no estilo “Sobrenome, Nome”.
+
+Substituições são feitas nos templates .docx, respeitando os placeholders como:
+
+<AUTOR>, <TITULO>, <SUBTITULO>, <COORDENADOR>, <ISBN>, etc.
+
+Campos como :<SUBTITULO> ou : v. <VOLUME> são removidos automaticamente se estiverem vazios.
+
+Dois arquivos .docx são gerados por linha:
+
+Ficha Catalográfica.docx
+
+Modelo Preenchido.docx
+
+Os arquivos são salvos em subpastas nomeadas como: AUTOR - TITULO
+
+Todo o conteúdo gerado é compactado no arquivo fichas_e_modelos.zip.
