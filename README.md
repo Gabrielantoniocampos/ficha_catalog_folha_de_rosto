@@ -23,7 +23,7 @@ A ferramenta tem como finalidade:
 - `python-docx`
 - `os`, `zipfile`, `re`, `shutil`
 
-Instalação das dependências:
+# Instalação das dependências:
 
 ```bash
 pip install pandas openpyxl python-docx
