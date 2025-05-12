@@ -23,12 +23,6 @@ A ferramenta tem como finalidade:
 - `python-docx`
 - `os`, `zipfile`, `re`, `shutil`
 
-# Instalação das dependências:
-
-```bash
-pip install pandas openpyxl python-docx
-
-
 # Salva o README na pasta de saída
 
 📁 fichas_final_com_tabelas/
@@ -79,3 +73,9 @@ Modelo Preenchido.docx
 Os arquivos são salvos em subpastas nomeadas como: AUTOR - TITULO
 
 Todo o conteúdo gerado é compactado no arquivo fichas_e_modelos.zip.
+
+
+# Instalação das dependências:
+
+```bash
+pip install pandas openpyxl python-docx
